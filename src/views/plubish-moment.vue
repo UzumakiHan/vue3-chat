@@ -66,12 +66,13 @@ import {useRouter} from 'vue-router';
 import {onClickOutside} from '@vueuse/core';
 
 import axios from 'axios';
+import {showLoadingToast, closeToast, showToast} from 'vant';
 import {useUserStore} from '@/store/user';
 import {IFileObject} from '@/typings';
 
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 import FaceComp from '@/components/face-comp.vue';
-import {showToast} from 'vant';
+
 const userStore = useUserStore();
 const router = useRouter();
 const momentText = ref('');
@@ -114,11 +115,13 @@ function handlePlubish() {
             'Content-Type': 'multipart/form-data'
         }
     };
+    showLoadingToast({});
     const publicMomentApi =
         process.env.NODE_ENV === 'development' ? '/api/wechatmoment/publicMoment' : '/wechatmoment/publicMoment';
     axios
         .post(publicMomentApi, formData, headers)
         .then(res => {
+            closeToast();
             momentText.value = location.value = userStore.adress = '';
             imgList.value = [];
 

@@ -107,7 +107,7 @@
 import {ref, onMounted} from 'vue';
 import {useRoute} from 'vue-router';
 import axios from 'axios';
-import {showToast} from 'vant';
+import {showToast, showLoadingToast, closeToast} from 'vant';
 import {useUserStore} from '@/store/user';
 import {IAjaxRes} from '@/typings';
 import {getUserInfo} from '@/common/api';
@@ -184,12 +184,14 @@ function handleSave() {
             'Content-Type': 'multipart/form-data'
         }
     };
+    showLoadingToast({});
     const editVueChatInfoApi =
         process.env.NODE_ENV === 'development' ? '/api/user/editVueChatInfo' : '/user/editVueChatInfo';
 
     axios
         .post(editVueChatInfoApi, formData, headers)
         .then(res => {
+            closeToast();
             showToast(res.data.message);
             if (res.data.status === 2) {
                 userStore.handleGetUserInfo();

@@ -56,8 +56,9 @@
 
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
-import {showToast} from 'vant';
+import {showToast, showLoadingToast, closeToast} from 'vant';
 import axios from 'axios';
+
 import {useRouter} from 'vue-router';
 import {useUserStore} from '@/store/user';
 
@@ -95,12 +96,14 @@ function handleSureAddChat() {
                 'Content-Type': 'multipart/form-data'
             }
         };
+        showLoadingToast({});
         const createChatRoomApi =
             process.env.NODE_ENV === 'development' ? '/api/chatroom/createChatRoom' : '/chatroom/createChatRoom';
 
         axios
             .post(createChatRoomApi, formData, headers)
             .then(res => {
+                closeToast();
                 if (res.data.status === 2) {
                     showToast(res.data.message);
                     router.replace('/mychatgrounp');

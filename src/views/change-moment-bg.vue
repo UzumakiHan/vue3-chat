@@ -29,7 +29,7 @@ import {ref} from 'vue';
 import axios from 'axios';
 // import{UploaderFileListItem} from 'vant'
 import {useRouter} from 'vue-router';
-import {showToast} from 'vant';
+import {showToast, showLoadingToast, closeToast} from 'vant';
 import {useUserStore} from '@/store/user';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 
@@ -61,10 +61,11 @@ function handleChangeMomentBg() {
     };
     const changeMomentBgApi =
         process.env.NODE_ENV === 'development' ? '/api/user/changeMomentBg' : '/user/changeMomentBg';
-
+    showLoadingToast({});
     axios
         .post(changeMomentBgApi, formData, headers)
         .then(res => {
+            closeToast();
             showToast(res.data.message);
             if (res.data.status === 2) {
                 router.replace('/wechatmoments');

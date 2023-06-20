@@ -44,7 +44,7 @@
 import {ref, onMounted} from 'vue';
 import {useRouter} from 'vue-router';
 import axios from 'axios';
-import {showToast} from 'vant';
+import {showToast, showLoadingToast, closeToast} from 'vant';
 
 import {useUserStore} from '@/store/user';
 import {IChatRoom} from '@/typings';
@@ -64,9 +64,11 @@ async function handleGetAllMyChatRoom() {
         }
     };
     const myChatRoomApi = process.env.NODE_ENV === 'development' ? '/api/chatroom/myChatRoom' : '/chatroom/myChatRoom';
+    showLoadingToast({});
     axios
         .post(myChatRoomApi, formData, headers)
         .then(res => {
+            closeToast();
             if (res.data.status === 2) {
                 myChatGrounp.value = res.data.data;
             } else {
