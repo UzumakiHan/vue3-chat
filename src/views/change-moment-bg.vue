@@ -61,7 +61,7 @@ function handleChangeMomentBg() {
     };
     const changeMomentBgApi =
         process.env.NODE_ENV === 'development' ? '/api/user/changeMomentBg' : '/user/changeMomentBg';
-    showLoadingToast({});
+    showLoadingToast({overlay: true});
     axios
         .post(changeMomentBgApi, formData, headers)
         .then(res => {

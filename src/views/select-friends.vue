@@ -96,7 +96,7 @@ function handleSureAddChat() {
                 'Content-Type': 'multipart/form-data'
             }
         };
-        showLoadingToast({});
+        showLoadingToast({overlay: true});
         const createChatRoomApi =
             process.env.NODE_ENV === 'development' ? '/api/chatroom/createChatRoom' : '/chatroom/createChatRoom';
 

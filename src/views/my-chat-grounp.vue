@@ -64,7 +64,7 @@ async function handleGetAllMyChatRoom() {
         }
     };
     const myChatRoomApi = process.env.NODE_ENV === 'development' ? '/api/chatroom/myChatRoom' : '/chatroom/myChatRoom';
-    showLoadingToast({});
+    showLoadingToast({overlay: true});
     axios
         .post(myChatRoomApi, formData, headers)
         .then(res => {

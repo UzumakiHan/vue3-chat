@@ -184,7 +184,7 @@ function handleSave() {
             'Content-Type': 'multipart/form-data'
         }
     };
-    showLoadingToast({});
+    showLoadingToast({overlay: true});
     const editVueChatInfoApi =
         process.env.NODE_ENV === 'development' ? '/api/user/editVueChatInfo' : '/user/editVueChatInfo';
 

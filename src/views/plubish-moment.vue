@@ -115,7 +115,7 @@ function handlePlubish() {
             'Content-Type': 'multipart/form-data'
         }
     };
-    showLoadingToast({});
+    showLoadingToast({overlay: true});
     const publicMomentApi =
         process.env.NODE_ENV === 'development' ? '/api/wechatmoment/publicMoment' : '/wechatmoment/publicMoment';
     axios

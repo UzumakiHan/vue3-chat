@@ -1,20 +1,18 @@
 import axios from 'axios';
 
 import qs from 'qs';
-import {showLoadingToast, closeToast} from 'vant';
+// import {showLoadingToast, closeToast} from 'vant';
 import {IAjaxRes} from '@/typings';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function get(url: string, data?: any) {
     // console.log(data)
     return new Promise((resolve, reject) => {
-        showLoadingToast({});
         axios
             .get(url, {
                 params: data || {}
             })
             .then(res => {
                 if (res) {
-                    closeToast();
                     // 成功回调
                     const resData: IAjaxRes = res.data;
 
@@ -29,7 +27,9 @@ export function get(url: string, data?: any) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function post(url: string, data: any) {
     return new Promise((resolve, reject) => {
-        showLoadingToast({});
+        // showLoadingToast({
+        //     overlay:true
+        // });
 
         axios
             .post(url, qs.stringify(data), {
@@ -42,7 +42,7 @@ export function post(url: string, data: any) {
             })
             .then(res => {
                 if (res) {
-                    closeToast();
+                    // closeToast();
 
                     // 成功回调
 
