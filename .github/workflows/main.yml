@@ -1,0 +1,61 @@
+name: CI Github Pages
+on:
+  #监听push操作
+  push:
+    branches:
+      - main # 这里只配置了main分支，所以只有推送main分支才会触发以下任务
+      
+jobs:
+  # 任务ID
+  build-and-deploy:
+    # 运行环境
+    runs-on: ubuntu-latest
+    # 步骤
+    steps:
+      # 官方action，将代码拉取到虚拟机
+      - name: Checkout  ️ 
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      
+      - name: Set node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Install dependencies
+        run: |
+           pnpm install
+      - name: Build
+        run: | 
+           npm run build
+           ls
+      - name: Deploy to Server # 执行部署任务
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest 
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          user: ${{ secrets.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASS }}
+
+          # 由于网路情况，很容易超时，设置为60s
+          connect_timeout: 60s
+          first_ssh: |
+             ls -la
+          # 将工作目录下的文件全部拷贝到部署服务器的工作目录
+          scp: |
+            ./dist => /home/HHJ/nodeProject/vuechat3-server
+          
+      - name: Release
+        uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          release-type: node
+          package-name: release-please-action
+          changelog-types: '[{"type": "chore", "section":"🎫 Chores | 其他更新", "hidden": false},{"type": "revert", "section":"⏪ Reverts | 回退", "hidden": false},{"type": "feat", "section": "✨ Features | 新功能", "hidden": false},{"type": "fix", "section": "🐛 Bug Fixes | Bug 修复", "hidden": false},{"type": "improvement", "section": "Feature Improvements", "hidden": false},{"type": "docs", "section":"📝 Documentation | 文档", "hidden": false},{"type": "style", "section":"💄 Styles | 风格", "hidden": false},{"type": "refactor", "section":"💄 Styles | 风格", "hidden": false},{"type": "perf", "section":"⚡ Performance Improvements | 性能优化", "hidden": false},{"type": "test", "section":"✅ Tests | 测试", "hidden": false},{"type": "build", "section":"👷‍ Build System | 构建", "hidden": false},{"type": "ci", "section":"🔧 Continuous Integration | CI 配置", "hidden":false}]' 
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
