@@ -99,7 +99,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
-import {showToast, showLoadingToast, closeToast, showDialog} from 'vant';
+import {showToast, showDialog} from 'vant';
 import {IAjaxRes, IDeleteChatOwner, IEditChatRoomAd, IEditChatRoomName, IRemoveChatMember, IUserInfo} from '@/typings';
 import {useUserStore} from '@/store/user';
 import ChatDialog from '@/components/chat-dialog.vue';
@@ -146,10 +146,8 @@ async function getChatRoomMember() {
 }
 // 获取聊天室信息
 async function handleGetChatGrounp() {
-    showLoadingToast({});
     const result = (await getChatRoomInfo(chatRoomId as string)) as IAjaxRes;
     if (result.status === 2) {
-        closeToast();
         chatRoomInfo.value = result.data;
         title.value = `聊天信息(${chatRoomInfo.value.chatRoomMemberId.length})`;
         chatRoomName.value = chatRoomInfo.value.chatRoomName;
