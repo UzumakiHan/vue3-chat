@@ -65,10 +65,12 @@ function handleChangeMomentBg() {
     axios
         .post(changeMomentBgApi, formData, headers)
         .then(res => {
-            closeToast();
-            showToast(res.data.message);
             if (res.data.status === 2) {
+                closeToast();
+                showToast(res.data.message);
                 router.replace('/wechatmoments');
+            } else {
+                showToast(res.data.message);
             }
         })
         .catch(err => {

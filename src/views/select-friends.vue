@@ -103,8 +103,8 @@ function handleSureAddChat() {
         axios
             .post(createChatRoomApi, formData, headers)
             .then(res => {
-                closeToast();
                 if (res.data.status === 2) {
+                    closeToast();
                     showToast(res.data.message);
                     router.replace('/mychatgrounp');
                 } else {

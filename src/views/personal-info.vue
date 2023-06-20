@@ -191,12 +191,14 @@ function handleSave() {
     axios
         .post(editVueChatInfoApi, formData, headers)
         .then(res => {
-            closeToast();
-            showToast(res.data.message);
             if (res.data.status === 2) {
+                closeToast();
+                showToast(res.data.message);
                 userStore.handleGetUserInfo();
                 isEdit.value = false;
                 iconName.value = isEdit.value ? 'cross' : 'edit';
+            } else {
+                showToast(res.data.message);
             }
         })
         .catch(err => {

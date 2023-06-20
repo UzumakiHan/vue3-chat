@@ -121,13 +121,14 @@ function handlePlubish() {
     axios
         .post(publicMomentApi, formData, headers)
         .then(res => {
-            closeToast();
             momentText.value = location.value = userStore.adress = '';
             imgList.value = [];
-
-            showToast(res.data.message);
             if (res.data.status === 2) {
+                closeToast();
+
                 router.replace('/wechatmoments');
+            } else {
+                showToast(res.data.message);
             }
         })
         .catch(err => {

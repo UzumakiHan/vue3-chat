@@ -68,8 +68,8 @@ async function handleGetAllMyChatRoom() {
     axios
         .post(myChatRoomApi, formData, headers)
         .then(res => {
-            closeToast();
             if (res.data.status === 2) {
+                closeToast();
                 myChatGrounp.value = res.data.data;
             } else {
                 showToast('获取群组失败');
