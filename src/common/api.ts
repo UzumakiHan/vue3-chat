@@ -17,7 +17,9 @@ import {
     ISendWechatComment,
     IGetGroupChatList
 } from '@/typings'
+console.log(process.env.NODE_ENV)
 const BASE_URL = process.env.NODE_ENV === 'development' ? '/api' : '';
+console.log(BASE_URL)
 
 //获取验证码接口
 export const getCaptchaSvg = () => get(BASE_URL+`/user/captcha?time=${new Date()}`);
