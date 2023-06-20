@@ -109,7 +109,7 @@ import {useRoute} from 'vue-router';
 import axios from 'axios';
 import {showToast} from 'vant';
 import {useUserStore} from '@/store/user';
-import {IAjaxRes, IFileObject} from '@/typings';
+import {IAjaxRes} from '@/typings';
 import {getUserInfo} from '@/common/api';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 import accountIcon from '@/assets/image/account.png';
@@ -159,7 +159,8 @@ function handleEdit() {
         };
     }
 }
-function handleAfterRead(file: IFileObject) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function handleAfterRead(file: any) {
     base64Avatar.value = file.content;
     userInfo.value.vuechatAvatar = file.content;
 }

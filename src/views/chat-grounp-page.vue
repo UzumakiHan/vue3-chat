@@ -168,7 +168,7 @@ import {useUserStore} from '@/store/user';
 import {getChatRoomInfo, getGroupChatList} from '@/common/api';
 import socketIo from '@/common/socketio';
 
-import {IAjaxRes, IFileObject, IChatRoomDialogList, IGetGroupChatList} from '@/typings';
+import {IAjaxRes, IChatRoomDialogList, IGetGroupChatList} from '@/typings';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 import FaceComp from '@/components/face-comp.vue';
 import ChatContent from '@/components/chat-content.vue';
@@ -264,9 +264,10 @@ async function sendChatMsg(): Promise<void> {
     }
 }
 // 发送图片
-function uploadImg(file: IFileObject) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function uploadImg(file: any) {
     fileList.value = [];
-    handleSendMsg(2, file?.content);
+    handleSendMsg(2, file.content);
 }
 
 function scrollToButtom() {

@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/js-md5': ^0.7.0
   '@types/node': ^18.13.0
   '@types/qs': ^6.9.7
   '@vitejs/plugin-vue': ^4.0.0
@@ -51,6 +52,7 @@ dependencies:
   vue3-baidu-map-gl: registry.npmmirror.com/vue3-baidu-map-gl/2.1.3_vue@3.2.47
 
 devDependencies:
+  '@types/js-md5': registry.npmmirror.com/@types/js-md5/0.7.0
   '@types/node': registry.npmmirror.com/@types/node/18.13.0
   '@types/qs': registry.npmmirror.com/@types/qs/6.9.7
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/4.0.0_vite@4.1.1+vue@3.2.47
@@ -552,6 +554,12 @@ packages:
     name: '@socket.io/component-emitter'
     version: 3.1.0
     dev: false
+
+  registry.npmmirror.com/@types/js-md5/0.7.0:
+    resolution: {integrity: sha512-4mN02EhCni6MlvCUl9bpcbMfu7R3G+ac+J37b7gKCu3tWhZc5/Ya41T+2QNR2aFt6vnMe+uTa5rFQ+nT2kl6cA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/js-md5/-/js-md5-0.7.0.tgz}
+    name: '@types/js-md5'
+    version: 0.7.0
+    dev: true
 
   registry.npmmirror.com/@types/json-schema/7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.12.tgz}

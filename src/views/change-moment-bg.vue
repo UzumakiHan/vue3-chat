@@ -27,20 +27,23 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import axios from 'axios';
+// import{UploaderFileListItem} from 'vant'
 import {useRouter} from 'vue-router';
 import {showToast} from 'vant';
-import {IFileObject} from '@/typings';
 import {useUserStore} from '@/store/user';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
+
 const router = useRouter();
 const fileList = ref([]);
-const base64Bg = ref('');
+const base64Bg = ref();
 const isChange = ref(true);
 const userStore = useUserStore();
-function handleAfterRead(file: IFileObject) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const handleAfterRead = (file: any) => {
     base64Bg.value = file.content;
     isChange.value = false;
-}
+};
+
 function handleBeforeDelete() {
     fileList.value = [];
     isChange.value = true;
