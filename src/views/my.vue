@@ -106,7 +106,6 @@ import applicationPng from '@/assets/image/application.png';
 import changePwdPng from '@/assets/image/changePwd.png';
 import logoutPng from '@/assets/image/logout.png';
 const router = useRouter();
-
 const sendApplyNum = ref(0);
 const userStore = useUserStore();
 function handleGoPersonal() {
