@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router';
+import {createRouter, createWebHashHistory} from 'vue-router';
 import storage from '@/common/storage';
 
 const routes = [
@@ -187,7 +187,7 @@ const routes = [
     }
 ];
 const router = createRouter({
-    history: createWebHistory('/'),
+    history: createWebHashHistory('/'),
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition;
@@ -200,7 +200,9 @@ const router = createRouter({
 // vue路由导航守卫控制访问权限
 // 如果用户没有登录，但是直接通过URL访问特定页面，需要重新导航到登录页面
 router.beforeEach((to, from, next) => {
-    if (to.path === '/login') { return next(); }
+    if (to.path === '/login') {
+        return next();
+    }
     storage.getItem('vue3-chat-token').then(val => {
         if (!val) {
             next('/login');
