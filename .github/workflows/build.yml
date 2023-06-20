@@ -3,7 +3,7 @@ on:
 
   pull_request:
       branches:
-        - main
+        - master
 jobs:
   # 任务ID
   build-and-deploy:
