@@ -17,7 +17,6 @@ import {
     ISendWechatComment,
     IGetGroupChatList
 } from '@/typings'
-// const BASE_URL = '/api';
 const BASE_URL = process.env.NODE_ENV === 'development' ? '/api' : '';
 
 //获取验证码接口
