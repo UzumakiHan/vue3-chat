@@ -186,7 +186,7 @@ import HfexList from 'hfex-list';
 import dayJs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-cn';
-import {IUserInfo, IWechatMoment, IAjaxRes, IWechatMomentComment} from '@/typings';
+import {IUserInfo, IWechatMoment, IAjaxRes, IWechatMomentComment} from '@/common/typings';
 import {
     getAllFriendsWechatMoments,
     delWechatMoment,
@@ -196,7 +196,8 @@ import {
     getMyWechatMoments
 } from '@/common/api';
 
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
+
 import TextParagraph from '@/components/text-paragraph.vue';
 
 dayJs.locale('zh-cn'); // +

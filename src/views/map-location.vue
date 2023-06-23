@@ -35,7 +35,7 @@ import {
     usePointGeocoder,
     PointGeocoderResult
 } from 'vue3-baidu-map-gl';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 const userStore = useUserStore();
 const center = ref();

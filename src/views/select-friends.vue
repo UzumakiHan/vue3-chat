@@ -60,10 +60,10 @@ import {showToast, showLoadingToast, closeToast} from 'vant';
 import axios from 'axios';
 
 import {useRouter} from 'vue-router';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import wechatBg from '@/assets/image/wechatbg.png';
+import wechatBg from '@/assets/img/wechatbg.png';
 const router = useRouter();
 const checkboxGroup = ref();
 const userStore = useUserStore();
@@ -102,7 +102,7 @@ function handleSureAddChat() {
             overlay: true
         });
         const createChatRoomApi =
-            process.env.NODE_ENV === 'development' ? '/api/chatroom/createChatRoom' : '/chatroom/createChatRoom';
+            import.meta.env.MODE === 'development' ? '/api/chatroom/createChatRoom' : '/chatroom/createChatRoom';
 
         axios
             .post(createChatRoomApi, formData, headers)

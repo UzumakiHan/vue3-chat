@@ -30,7 +30,8 @@ import axios from 'axios';
 // import{UploaderFileListItem} from 'vant'
 import {useRouter} from 'vue-router';
 import {showToast, showLoadingToast, closeToast} from 'vant';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
+
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 
 const router = useRouter();
@@ -60,7 +61,7 @@ function handleChangeMomentBg() {
         }
     };
     const changeMomentBgApi =
-        process.env.NODE_ENV === 'development' ? '/api/user/changeMomentBg' : '/user/changeMomentBg';
+        import.meta.env.MODE === 'development' ? '/api/user/changeMomentBg' : '/user/changeMomentBg';
     showLoadingToast({
         forbidClick: true,
         duration: 0,

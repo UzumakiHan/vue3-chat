@@ -47,13 +47,14 @@
 <script setup lang="ts">
 import {useRouter} from 'vue-router';
 
-import {useUserStore} from '@/store/user';
-import {IUserInfo} from '@/typings';
+import {useUserStore} from '@/store/index';
+
+import {IUserInfo} from '@/common/typings';
 
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 
-import defaultMomentBg from '@/assets/image/defaultMoment.jpg';
-import switchPng from '@/assets/image/switchbg.png';
+import defaultMomentBg from '@/assets/img/default-moment.jpg';
+import switchPng from '@/assets/img/switchbg.png';
 const props = defineProps({
     userInfo: {
         type: Object as () => IUserInfo,

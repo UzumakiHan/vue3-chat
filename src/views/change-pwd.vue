@@ -66,9 +66,9 @@ import {useRouter} from 'vue-router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 import md5 from 'js-md5';
 import {showToast} from 'vant';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 import {changeUserPwd} from '@/common/api';
-import {IAjaxRes} from '@/typings';
+import {IAjaxRes} from '@/common/typings';
 import storage from '@/common/storage';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 

@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs';
-import voiceIcon from '@/assets/image/voice-circle.png';
+import voiceIcon from '@/assets/img/voice-circle.png';
 
 const props = defineProps({
     userAvatar: {

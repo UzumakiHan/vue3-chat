@@ -94,17 +94,17 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {useRouter} from 'vue-router';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 import storage from '@/common/storage';
 import {Row, Image, CellGroup, Cell, ConfigProvider, Icon, Badge, showConfirmDialog} from 'vant';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import maleLogo from '@/assets/image/male.png';
-import femaleLogo from '@/assets/image/female.png';
-import defaultAvatar from '@/assets/image/avatar.jpg';
-import chatgroupPng from '@/assets/image/chatgroup.png';
-import applicationPng from '@/assets/image/application.png';
-import changePwdPng from '@/assets/image/changePwd.png';
-import logoutPng from '@/assets/image/logout.png';
+import maleLogo from '@/assets/img/male.png';
+import femaleLogo from '@/assets/img/female.png';
+import defaultAvatar from '@/assets/img/avatar.jpg';
+import chatgroupPng from '@/assets/img/chatgroup.png';
+import applicationPng from '@/assets/img/application.png';
+import changePwdPng from '@/assets/img/change-pwd.png';
+import logoutPng from '@/assets/img/logout.png';
 const router = useRouter();
 const sendApplyNum = ref(0);
 const userStore = useUserStore();

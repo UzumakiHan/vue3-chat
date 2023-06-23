@@ -46,8 +46,8 @@ import {useRouter} from 'vue-router';
 import axios from 'axios';
 import {showToast, showLoadingToast, closeToast} from 'vant';
 
-import {useUserStore} from '@/store/user';
-import {IChatRoom} from '@/typings';
+import {useUserStore} from '@/store/index';
+import {IChatRoom} from '@/common/typings';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 const userStore = useUserStore();
 
@@ -63,7 +63,7 @@ async function handleGetAllMyChatRoom() {
             'Content-Type': 'multipart/form-data'
         }
     };
-    const myChatRoomApi = process.env.NODE_ENV === 'development' ? '/api/chatroom/myChatRoom' : '/chatroom/myChatRoom';
+    const myChatRoomApi = import.meta.env.MODE === 'development' ? '/api/chatroom/myChatRoom' : '/chatroom/myChatRoom';
     showLoadingToast({
         forbidClick: true,
         duration: 0,

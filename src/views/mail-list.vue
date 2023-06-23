@@ -57,11 +57,11 @@
 <script setup lang="ts">
 import {onMounted} from 'vue';
 import {useRouter} from 'vue-router';
-import {useUserStore} from '@/store/user';
-import {IUserInfo} from '@/typings';
+import {useUserStore} from '@/store/index';
+import {IUserInfo} from '@/common/typings';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import addIcon from '@/assets/image/add.svg';
-import searchIcon from '@/assets/image/search.svg';
+import addIcon from '@/assets/img/add.svg';
+import searchIcon from '@/assets/img/search.svg';
 
 const userStore = useUserStore();
 const router = useRouter();

@@ -99,9 +99,10 @@ import {onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import {showToast} from 'vant';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
+
 import {getUserInfo} from '@/common/api';
-import {IUserInfo, IAjaxRes} from '@/typings';
+import {IUserInfo, IAjaxRes} from '@/common/typings';
 import socketIo from '@/common/socketio';
 const router = useRouter();
 const userStore = useUserStore();

@@ -164,19 +164,19 @@ import {onClickOutside} from '@vueuse/core';
 import HfexList from 'hfex-list';
 
 import Recorderx from 'recorderx';
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 import {getChatRoomInfo, getGroupChatList} from '@/common/api';
 import socketIo from '@/common/socketio';
 
-import {IAjaxRes, IChatRoomDialogList, IGetGroupChatList} from '@/typings';
+import {IAjaxRes, IChatRoomDialogList, IGetGroupChatList} from '@/common/typings';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 import FaceComp from '@/components/face-comp.vue';
 import ChatContent from '@/components/chat-content.vue';
 
-import voiceIcon from '@/assets/image/voice-circle.png';
-import keyboardIcon from '@/assets/image/keyboard.png';
-import recordvoiceIcon from '@/assets/image/voice.png';
-import sendvoiceIcon from '@/assets/image/send.png';
+import voiceIcon from '@/assets/img/voice-circle.png';
+import keyboardIcon from '@/assets/img/keyboard.png';
+import recordvoiceIcon from '@/assets/img/voice.png';
+import sendvoiceIcon from '@/assets/img/send.png';
 
 const rc = new Recorderx();
 const flowLoading = ref(false);

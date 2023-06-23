@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import qs from 'qs';
 // import {showLoadingToast, closeToast} from 'vant';
-import {IAjaxRes} from '@/typings';
+import {IAjaxRes} from '@/common/typings';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function get(url: string, data?: any) {
     // console.log(data)

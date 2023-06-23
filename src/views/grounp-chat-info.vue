@@ -100,8 +100,15 @@
 import {ref, onMounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import {showToast, showDialog} from 'vant';
-import {IAjaxRes, IDeleteChatOwner, IEditChatRoomAd, IEditChatRoomName, IRemoveChatMember, IUserInfo} from '@/typings';
-import {useUserStore} from '@/store/user';
+import {
+    IAjaxRes,
+    IDeleteChatOwner,
+    IEditChatRoomAd,
+    IEditChatRoomName,
+    IRemoveChatMember,
+    IUserInfo
+} from '@/common/typings';
+import {useUserStore} from '@/store/index';
 import ChatDialog from '@/components/chat-dialog.vue';
 import {
     getChatRoomInfo,

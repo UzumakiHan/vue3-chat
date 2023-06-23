@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue';
 import {emojData} from '@/common/constant';
-import {IEmojiData} from '@/typings';
+import {IEmojiData} from '@/common/typings';
 const props = defineProps({
     faceBottom: {
         type: Number,

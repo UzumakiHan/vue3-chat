@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run check && vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "check":"npx hfex-check --husky --directory"
   },
   "dependencies": {
     "@vueuse/core": "^10.1.2",

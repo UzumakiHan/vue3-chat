@@ -122,12 +122,12 @@ import {Row, Col, CellGroup, Button, Field, Image, Icon, showToast, FieldType} f
 import {ref, onMounted} from 'vue';
 import {useRouter} from 'vue-router';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import codeImg from '@/assets/image/code.png';
-import wechatBg from '@/assets/image/wechatbg.png';
-import defaultAvatar from '@/assets/image/avatar.jpg';
+import codeImg from '@/assets/img/code.png';
+import wechatBg from '@/assets/img/wechatbg.png';
+import defaultAvatar from '@/assets/img/avatar.jpg';
 import storage from '@/common/storage';
-import {useUserStore} from '@/store/user';
-import {IAjaxRes} from '@/typings';
+import {useUserStore} from '@/store/index';
+import {IAjaxRes} from '@/common/typings';
 
 import {vueChatLogin, vueChatRegister, getCaptchaSvg} from '@/common/api';
 const router = useRouter();

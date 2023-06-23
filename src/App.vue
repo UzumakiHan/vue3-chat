@@ -55,8 +55,7 @@
 import {useRoute} from 'vue-router';
 import {onMounted, ref} from 'vue';
 import socketIo from '@/common/socketio';
-
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 
 import {Tabbar, TabbarItem, showNotify} from 'vant';
 const route = useRoute();

@@ -19,8 +19,8 @@
 import {ref, onMounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import {showLoadingToast, closeToast} from 'vant';
-import {useUserStore} from '@/store/user';
-import {IUserInfo, IAjaxRes} from '@/typings';
+import {useUserStore} from '@/store/index';
+import {IUserInfo, IAjaxRes} from '@/common/typings';
 import {getUserInfo} from '@/common/api';
 
 import WechatMomentList from '@/components/wechat-moment-list.vue';

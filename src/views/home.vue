@@ -101,7 +101,7 @@ import {useRouter} from 'vue-router';
 import {List, Image, Empty, showToast} from 'vant';
 import dayjs from 'dayjs';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import {IChatList, IAjaxRes} from '@/typings';
+import {IChatList, IAjaxRes} from '@/common/typings';
 import storage from '@/common/storage';
 import {alldigtalChatList, getAllgrounpChatList} from '@/common/api';
 import socketIo from '@/common/socketio';
@@ -114,14 +114,16 @@ const getChatList = async () => {
         userId.value = value as string;
         const chatUserRes = (await alldigtalChatList(userId.value)) as IAjaxRes;
         const allGrounpRes = (await getAllgrounpChatList(userId.value)) as IAjaxRes;
+        const chatDigtalList = chatUserRes.data?.chatDigtalList as Array<IChatList>;
+        const chatDigtalGrounpList = allGrounpRes.data?.allGrounpChatList as Array<IChatList>;
 
-        if (chatUserRes.status === 2) {
-            allChatList.value = chatUserRes.data?.chatDigtalList as Array<IChatList>;
+        if (chatUserRes.status === 2 && chatDigtalList.length > 0) {
+            allChatList.value = allChatList.value.concat(chatDigtalList);
         } else {
             showToast(chatUserRes.message);
         }
         if (allGrounpRes.status === 2) {
-            allChatList.value = allChatList.value.concat(allGrounpRes.data as Array<IChatList>);
+            allChatList.value = allChatList.value.concat(chatDigtalGrounpList);
         }
     });
 };

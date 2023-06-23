@@ -67,8 +67,8 @@ import {onClickOutside} from '@vueuse/core';
 
 import axios from 'axios';
 import {showLoadingToast, closeToast, showToast} from 'vant';
-import {useUserStore} from '@/store/user';
-import {IFileObject} from '@/typings';
+import {useUserStore} from '@/store/index';
+import {IFileObject} from '@/common/typings';
 
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 import FaceComp from '@/components/face-comp.vue';
@@ -121,7 +121,7 @@ function handlePlubish() {
         overlay: true
     });
     const publicMomentApi =
-        process.env.NODE_ENV === 'development' ? '/api/wechatmoment/publicMoment' : '/wechatmoment/publicMoment';
+        import.meta.env.MODE === 'development' ? '/api/wechatmoment/publicMoment' : '/wechatmoment/publicMoment';
     axios
         .post(publicMomentApi, formData, headers)
         .then(res => {

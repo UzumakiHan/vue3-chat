@@ -108,17 +108,17 @@ import {ref, onMounted} from 'vue';
 import {useRoute} from 'vue-router';
 import axios from 'axios';
 import {showToast, showLoadingToast, closeToast} from 'vant';
-import {useUserStore} from '@/store/user';
-import {IAjaxRes} from '@/typings';
+import {useUserStore} from '@/store/index';
+import {IAjaxRes} from '@/common/typings';
 import {getUserInfo} from '@/common/api';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import accountIcon from '@/assets/image/account.png';
-import userIcon from '@/assets/image/user.png';
-import sexIcon from '@/assets/image/sex.png';
-import phoneIcon from '@/assets/image/phone.png';
-import brithdayIcon from '@/assets/image/brithday.png';
-import addressIcon from '@/assets/image/address.png';
-import signIcon from '@/assets/image/sign.png';
+import accountIcon from '@/assets/img/account.png';
+import userIcon from '@/assets/img/user.png';
+import sexIcon from '@/assets/img/sex.png';
+import phoneIcon from '@/assets/img/phone.png';
+import brithdayIcon from '@/assets/img/brithday.png';
+import addressIcon from '@/assets/img/address.png';
+import signIcon from '@/assets/img/sign.png';
 
 const route = useRoute();
 const userStore = useUserStore();
@@ -190,7 +190,7 @@ function handleSave() {
         overlay: true
     });
     const editVueChatInfoApi =
-        process.env.NODE_ENV === 'development' ? '/api/user/editVueChatInfo' : '/user/editVueChatInfo';
+        import.meta.env.MODE === 'development' ? '/api/user/editVueChatInfo' : '/user/editVueChatInfo';
 
     axios
         .post(editVueChatInfoApi, formData, headers)

@@ -106,16 +106,16 @@
 import {onMounted, ref} from 'vue';
 import {showToast, showImagePreview, showDialog} from 'vant';
 import {useRoute, useRouter} from 'vue-router';
-import {IUserInfo, IWechatMoment, IAjaxRes, IDelMyFriend, IGetMyWechatMoments} from '@/typings';
+import {IUserInfo, IWechatMoment, IAjaxRes, IDelMyFriend, IGetMyWechatMoments} from '@/common/typings';
 import socketIo from '@/common/socketio';
 
-import {useUserStore} from '@/store/user';
+import {useUserStore} from '@/store/index';
 import {delMyFriend, cleanDigtalChatMessage, getMyWechatMoments, getUserInfo} from '@/common/api';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
-import maleLogo from '@/assets/image/male.png';
-import femaleLogo from '@/assets/image/female.png';
-import addIcon from '@/assets/image/add-icon.png';
-import delIcon from '@/assets/image/del-icon.png';
+import maleLogo from '@/assets/img/male.png';
+import femaleLogo from '@/assets/img/female.png';
+import addIcon from '@/assets/img/add-icon.png';
+import delIcon from '@/assets/img/del-icon.png';
 
 const userStore = useUserStore();
 const router = useRouter();
