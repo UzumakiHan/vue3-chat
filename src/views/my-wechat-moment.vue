@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="userInfo"
+        v-if="userStore.userInfo"
         class="wechat-moment"
     >
         <WechatMomentHeader
