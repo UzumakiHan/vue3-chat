@@ -2,7 +2,7 @@
     <div class="home">
         <ChatNavBar title="首页" />
         <div style="padding-top: 50px">
-            <List v-if="allChatList.length > 0 || allChatList.length > 0">
+            <List v-if="allChatList.length > 0">
                 <div
                     v-for="(item, index) in allChatList"
                     :key="index"

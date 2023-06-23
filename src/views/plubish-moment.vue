@@ -115,17 +115,20 @@ function handlePlubish() {
             'Content-Type': 'multipart/form-data'
         }
     };
-    showLoadingToast({overlay: true});
+    showLoadingToast({
+        forbidClick: true,
+        duration: 0,
+        overlay: true
+    });
     const publicMomentApi =
         process.env.NODE_ENV === 'development' ? '/api/wechatmoment/publicMoment' : '/wechatmoment/publicMoment';
     axios
         .post(publicMomentApi, formData, headers)
         .then(res => {
+            closeToast();
             momentText.value = location.value = userStore.adress = '';
             imgList.value = [];
             if (res.data.status === 2) {
-                closeToast();
-
                 router.replace('/wechatmoments');
             } else {
                 showToast(res.data.message);

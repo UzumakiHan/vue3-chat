@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
-
+import {showLoadingToast, closeToast} from 'vant';
 import {useUserStore} from '@/store/user';
 import {IUserInfo, IAjaxRes} from '@/typings';
 import {getUserInfo} from '@/common/api';
@@ -35,8 +35,16 @@ const userId = (route.query?.userId || userStore.userId) as string;
 const userInfo = ref();
 
 async function handlGetUserInfo() {
+    showLoadingToast({
+        forbidClick: true,
+        duration: 0,
+        overlay: true
+    });
     const result = (await getUserInfo(userId)) as IAjaxRes;
-    userInfo.value = result.data as IUserInfo;
+    if (result.status === 2) {
+        closeToast();
+        userInfo.value = result.data as IUserInfo;
+    }
 }
 function handleAvatarClick() {
     router.push('/mywechatmoments');

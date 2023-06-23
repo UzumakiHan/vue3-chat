@@ -61,12 +61,16 @@ function handleChangeMomentBg() {
     };
     const changeMomentBgApi =
         process.env.NODE_ENV === 'development' ? '/api/user/changeMomentBg' : '/user/changeMomentBg';
-    showLoadingToast({overlay: true});
+    showLoadingToast({
+        forbidClick: true,
+        duration: 0,
+        overlay: true
+    });
     axios
         .post(changeMomentBgApi, formData, headers)
         .then(res => {
+            closeToast();
             if (res.data.status === 2) {
-                closeToast();
                 showToast(res.data.message);
                 router.replace('/wechatmoments');
             } else {

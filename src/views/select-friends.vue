@@ -96,15 +96,19 @@ function handleSureAddChat() {
                 'Content-Type': 'multipart/form-data'
             }
         };
-        showLoadingToast({overlay: true});
+        showLoadingToast({
+            forbidClick: true,
+            duration: 0,
+            overlay: true
+        });
         const createChatRoomApi =
             process.env.NODE_ENV === 'development' ? '/api/chatroom/createChatRoom' : '/chatroom/createChatRoom';
 
         axios
             .post(createChatRoomApi, formData, headers)
             .then(res => {
+                closeToast();
                 if (res.data.status === 2) {
-                    closeToast();
                     showToast(res.data.message);
                     router.replace('/mychatgrounp');
                 } else {

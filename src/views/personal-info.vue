@@ -184,15 +184,19 @@ function handleSave() {
             'Content-Type': 'multipart/form-data'
         }
     };
-    showLoadingToast({overlay: true});
+    showLoadingToast({
+        forbidClick: true,
+        duration: 0,
+        overlay: true
+    });
     const editVueChatInfoApi =
         process.env.NODE_ENV === 'development' ? '/api/user/editVueChatInfo' : '/user/editVueChatInfo';
 
     axios
         .post(editVueChatInfoApi, formData, headers)
         .then(res => {
+            closeToast();
             if (res.data.status === 2) {
-                closeToast();
                 showToast(res.data.message);
                 userStore.handleGetUserInfo();
                 isEdit.value = false;

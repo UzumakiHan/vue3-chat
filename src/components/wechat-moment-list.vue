@@ -507,7 +507,7 @@ onMounted(() => {
                         background: #eee;
                         font-size: 16px;
                         &-list {
-                            min-height: 160px;
+                            // min-height: 160px;
                             p {
                                 padding-top: 10px;
                                 .user {

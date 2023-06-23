@@ -64,12 +64,16 @@ async function handleGetAllMyChatRoom() {
         }
     };
     const myChatRoomApi = process.env.NODE_ENV === 'development' ? '/api/chatroom/myChatRoom' : '/chatroom/myChatRoom';
-    showLoadingToast({overlay: true});
+    showLoadingToast({
+        forbidClick: true,
+        duration: 0,
+        overlay: true
+    });
     axios
         .post(myChatRoomApi, formData, headers)
         .then(res => {
+            closeToast();
             if (res.data.status === 2) {
-                closeToast();
                 myChatGrounp.value = res.data.data;
             } else {
                 showToast('获取群组失败');
