@@ -168,7 +168,7 @@ import {useUserStore} from '@/store/index';
 import {getChatRoomInfo, getGroupChatList} from '@/common/api';
 import socketIo from '@/common/socketio';
 
-import {IAjaxRes, IChatRoomDialogList, IGetGroupChatList} from '@/common/typings';
+import {IAjaxRes, IChatList, IGetGroupChatList} from '@/common/typings';
 import ChatNavBar from '@/components/chat-nav-bar.vue';
 import FaceComp from '@/components/face-comp.vue';
 import ChatContent from '@/components/chat-content.vue';
@@ -200,7 +200,7 @@ const chatboxRef = ref<HTMLElement>();
 const faceBoxRef = ref<HTMLElement>();
 const momentText = ref('');
 const chatRoomInfo = ref();
-const chatGrounpDigtalList = ref<Array<IChatRoomDialogList>>([]);
+const chatGrounpDigtalList = ref<Array<IChatList>>([]);
 onClickOutside(faceBoxRef, () => {
     faceShow.value = false;
 });
@@ -300,7 +300,7 @@ async function handleGetGroupChatList() {
     const result = (await getGroupChatList(chatGrounp)) as IAjaxRes;
     flowLoading.value = false;
     if (result.status === 2) {
-        const list = result.data?.groupChatList as Array<IChatRoomDialogList>;
+        const list = result.data?.allGrounpChatList as Array<IChatList>;
         if (list?.length === 0) {
             flowFinished.value = true;
             return;
