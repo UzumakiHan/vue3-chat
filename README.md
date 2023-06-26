@@ -1,8 +1,17 @@
 # vuechat 重构 (未重构前的 https://github.com/UzumakiHan/vuechat)
+## 访问地址： http://43.142.90.39:11113/
 
 ## 主要实现用户登录注册、聊天、群聊、发布动态、用户信息修改等功能
-## 以前的版本主要是用vue2 + vuex + vant2去搭建的，看了2年半写的这些代码,哈哈哈,觉得写得很烂 。利用了一些课余时间去进行了重构,这次打算用vue3 + pinia + vite + vant4.0 + hooks+异步组件去进行重构，重构后，代码的可读性以及性能有了很大的提升，重构的主要目的是接入之前自己的那套前端工程化流程，以及加入了一些自己封装的npm包，具体流程可以查阅我的这篇博客 。
+## 以前的版本主要是用vue2 + vuex + vant2去搭建的，看了2年半写的这些代码,哈哈哈,觉得写得很烂 。利用了一些课余时间去进行了重构,这次打算用vue3 +ts+ pinia + vite + vant4.0 + hooks+异步组件去进行重构，重构后，代码的可读性以及性能有了很大的提升，重构的主要目的是接入之前自己的那套前端工程化流程，以及加入了一些自己封装的npm包，具体流程可以查阅我的这篇博客 。
 https://blog.csdn.net/Hhjian524/article/details/131087359?spm=1001.2014.3001.5501
+
+## 工程化：
+1. 使用了mfex-project去创建项目
+2. 使用了hfex-check对项目目录结构进行检测
+3. 使用了rollup构建的npm包，hfex-list以及hfex-ellipsis
+3. 使用了eslint-config-hfex、hfex-stylelint-config对代码质量进行检测，hfex-prettier-config格式化代码缩进
+4. 使用了hfex-check对git commit信息进行检测
+5. 使用了GitHub action自动构建并推到远程服务器
 
 ## 示页面截图
 ### 登录注册
