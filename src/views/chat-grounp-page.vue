@@ -299,6 +299,7 @@ async function handleGetGroupChatList() {
     flowLoading.value = false;
     if (result.status === 2) {
         const list = result.data?.allGrounpChatList as Array<IChatList>;
+        console.log(result.data);
         if (list?.length === 0) {
             flowFinished.value = true;
             return;
