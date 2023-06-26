@@ -5,9 +5,9 @@ on:
       branches:
         - master
       paths-ignore:
-      - README.md
-      - .gitignore
-      - .npmignore
+        - README.md
+        - .gitignore
+        - .npmignore
 jobs:
   # 任务ID
   build-and-deploy:
