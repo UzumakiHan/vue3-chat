@@ -55,15 +55,16 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
 import {showToast, showLoadingToast, closeToast} from 'vant';
 import axios from 'axios';
 
 import {useRouter} from 'vue-router';
 import {useUserStore} from '@/store/index';
 
-import ChatNavBar from '@/components/chat-nav-bar.vue';
 import wechatBg from '@/assets/img/wechatbg.png';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+
 const router = useRouter();
 const checkboxGroup = ref();
 const userStore = useUserStore();

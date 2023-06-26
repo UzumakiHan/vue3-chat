@@ -41,14 +41,16 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
 import axios from 'axios';
 import {showToast, showLoadingToast, closeToast} from 'vant';
 
 import {useUserStore} from '@/store/index';
 import {IChatRoom} from '@/common/typings';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+
 const userStore = useUserStore();
 
 const myChatGrounp = ref<Array<IChatRoom>>([]);

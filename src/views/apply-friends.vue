@@ -95,15 +95,15 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue';
+import {defineAsyncComponent, onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import {showToast} from 'vant';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
 import {useUserStore} from '@/store/index';
 
 import {getUserInfo} from '@/common/api';
 import {IUserInfo, IAjaxRes} from '@/common/typings';
 import socketIo from '@/common/socketio';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 const router = useRouter();
 const userStore = useUserStore();
 const sendApplyList = ref<Array<IUserInfo>>([]);

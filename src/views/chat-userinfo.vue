@@ -12,7 +12,7 @@
                 width="60"
                 height="60"
                 :src="userInfo.vuechatAvatar"
-                @click="handlePpreviewImg(userInfo.vuechatAvatar)"
+                @click="handlePreviewImg(userInfo.vuechatAvatar)"
             />
             <div class="chat-info">
                 <p class="chat-title">
@@ -103,84 +103,39 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue';
-import {showToast, showImagePreview, showDialog} from 'vant';
-import {useRoute, useRouter} from 'vue-router';
-import {IUserInfo, IWechatMoment, IAjaxRes, IDelMyFriend, IGetMyWechatMoments} from '@/common/typings';
-import socketIo from '@/common/socketio';
+import {onMounted, defineAsyncComponent} from 'vue';
+import {showToast} from 'vant';
+import {useRouter} from 'vue-router';
 
+import socketIo from '@/common/socketio';
+import {handlePreviewImg} from '@/common/util';
 import {useUserStore} from '@/store/index';
-import {delMyFriend, cleanDigtalChatMessage, getMyWechatMoments, getUserInfo} from '@/common/api';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+import useChatInfo from '@/hooks/use-chat-info';
 import maleLogo from '@/assets/img/male.png';
 import femaleLogo from '@/assets/img/female.png';
 import addIcon from '@/assets/img/add-icon.png';
 import delIcon from '@/assets/img/del-icon.png';
-
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+const {
+    userInfo,
+    judgeKey,
+    userId,
+    imgShowList,
+    handleGetuserInfo,
+    handleCleanMessage,
+    handleJudgeMyFriends,
+    handleDelFriend,
+    handleGetImgShowList,
+    hanleCheckuserInfo,
+    goWechatMoment
+} = useChatInfo();
 const userStore = useUserStore();
 const router = useRouter();
-const route = useRoute();
-const userId = route.params.id as string;
-const userInfo = ref();
-const imgShowList = ref<Array<string>>([]);
-const judgeKey = ref(false);
-// 判断当前用户是否为 好友
-function handleJudgeMyFriends() {
-    const friendsList: Array<string> = userStore.userInfo.friendsList;
-    if (friendsList.length > 0) {
-        friendsList.forEach(item => {
-            if (item === userId) {
-                judgeKey.value = true;
-            }
-        });
-    }
-}
-async function handleGetuserInfo() {
-    const result = (await getUserInfo(userId)) as IAjaxRes;
-    if (result.status === 2) {
-        const userRes = result.data as IUserInfo;
-        userInfo.value = userRes;
-        handleJudgeMyFriends();
-    }
-}
-function handlePpreviewImg(avatar: string) {
-    const avatarArr = [];
-    avatarArr.push(avatar);
-    showImagePreview(avatarArr);
-}
-function hanleCheckuserInfo(currentUser: IUserInfo) {
-    router.push(`/personalinfo/${currentUser._id}`);
-}
-function goWechatMoment(currentUser: IUserInfo) {
-    router.push(`/wechatmoments?userId=${currentUser._id}`);
-}
-// 获取朋友圈照片
-async function handleGetImgShowList() {
-    const getInfo: IGetMyWechatMoments = {
-        id: userId,
-        pageSize: 3,
-        page: 1
-    };
-    const result = (await getMyWechatMoments(getInfo)) as IAjaxRes;
-    const userWechatmoment = result.data?.list;
-    if (!userWechatmoment) {
-        return;
-    }
-    const wechatMomentList = userWechatmoment.reverse();
-    const imglist: Array<string> = [];
-    wechatMomentList.forEach((item: IWechatMoment) => {
-        item.base64ImgList.forEach((base64Img: string) => {
-            imglist.push(base64Img);
-        });
-    });
-
-    imgShowList.value = imglist.slice(0, 3);
-}
 
 function handleSendMessage() {
     const targetId = userId;
-    const targetName = userInfo.value.vuechatName;
-    router.push(`/chatpage/${targetId}/${targetName}`);
+    const sendId = userStore.userId;
+    router.push(`/chatpage/${targetId}/${sendId}`);
 }
 function handleCommonApply() {
     const sendApplyData = {
@@ -210,35 +165,7 @@ function handleSendApply() {
         handleCommonApply();
     }
 }
-function handleDelFriend() {
-    const delInfo: IDelMyFriend = {
-        delId: userId,
-        myId: userStore.userId
-    };
-    showDialog({
-        showCancelButton: true,
-        title: '删除联系人',
-        message: `将联系人“${userInfo.value.vuechatName}”删除，将同时删除与该联系人的聊天记录`
-    }).then(async () => {
-        const result = (await delMyFriend(delInfo)) as IAjaxRes;
-        showToast(result.message);
-        if (result.status === 2) {
-            router.push('/maillist');
-        }
-    });
-}
-function handleCleanMessage() {
-    showDialog({
-        showCancelButton: true,
-        title: '删除聊天记录',
-        message: `将联系人“${userInfo.value.vuechatName}”的聊天记录删除`
-    }).then(async () => {
-        const delId = userStore.userId + userId;
 
-        const result = (await cleanDigtalChatMessage(delId)) as IAjaxRes;
-        showToast(result.message);
-    });
-}
 onMounted(() => {
     userStore.handleGetUserInfo();
     setTimeout(() => {

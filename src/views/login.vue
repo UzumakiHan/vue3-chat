@@ -48,7 +48,7 @@
                         v-if="isShowEye"
                         span="3"
                         style="margin-top: 12px"
-                        @click="handleOpeneye"
+                        @click="handlEyeToggle"
                     >
                         <Icon
                             name="closed-eye"
@@ -59,7 +59,7 @@
                         v-else
                         span="2"
                         style="margin-top: 12px"
-                        @click="handleOpeneye"
+                        @click="handlEyeToggle"
                     >
                         <Icon
                             name="eye-o"
@@ -83,7 +83,7 @@
                         <div
                             ref="svgRef"
                             class="svg-box"
-                            @click="getCaptcha"
+                            @click="handleGetCaptcha"
                         />
                     </Col>
                 </Row>
@@ -118,10 +118,10 @@
 </template>
 
 <script setup lang="ts">
-import {Row, Col, CellGroup, Button, Field, Image, Icon, showToast, FieldType} from 'vant';
-import {ref, onMounted} from 'vue';
+import {Row, Col, CellGroup, Button, Field, Image, Icon, showToast} from 'vant';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
 import codeImg from '@/assets/img/code.png';
 import wechatBg from '@/assets/img/wechatbg.png';
 import defaultAvatar from '@/assets/img/avatar.jpg';
@@ -129,43 +129,33 @@ import storage from '@/common/storage';
 import {useUserStore} from '@/store/index';
 import {IAjaxRes} from '@/common/typings';
 
-import {vueChatLogin, vueChatRegister, getCaptchaSvg} from '@/common/api';
+import {vueChatLogin, vueChatRegister} from '@/common/api';
+import useLogin from '@/hooks/use-login';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+
+const {
+    isShowEye,
+    inputPasswordType,
+    btnText,
+    loginOrResText,
+    isHaveAccount,
+    svgRef,
+    svgcaptchaText,
+    handlEyeToggle,
+    handleLRToggle,
+    handleGetCaptcha
+} = useLogin();
 const router = useRouter();
 const userStore = useUserStore();
 const vueChatName = ref<string>('');
 const vueChatAccount = ref<string>('');
 const password = ref<string>('');
 const captcha = ref<string>('');
-const svgRef = ref();
-const svgcaptchaText = ref('');
-const isShowEye = ref<boolean>(false);
-const isHaveAccount = ref<boolean>(true);
-const loginOrResText = ref<string>('注册新用户');
-const btnText = ref<string>('登录');
-
-const inputPasswordType = ref<FieldType>('password');
-const handleOpeneye = () => {
-    if (isShowEye.value) {
-        isShowEye.value = !isShowEye.value;
-        inputPasswordType.value = 'text';
-    } else {
-        isShowEye.value = true;
-        inputPasswordType.value = 'password';
-    }
-};
-// 获取验证码
-const getCaptcha = async () => {
-    const res = (await getCaptchaSvg()) as IAjaxRes;
-    svgRef.value.innerHTML = res.data?.captchaSvg;
-    svgcaptchaText.value = res.data?.captchaText || '';
-};
 // 注册或返回登录
 const loginOrRes = () => {
-    getCaptcha();
+    handleGetCaptcha();
     vueChatAccount.value = password.value = captcha.value = vueChatName.value = '';
-    btnText.value = isHaveAccount.value ? '注册' : '登录';
-    loginOrResText.value = isHaveAccount.value ? '已有账号，返回登录' : '注册新用户';
-    isHaveAccount.value = !isHaveAccount.value;
+    handleLRToggle();
 };
 async function handleLogin() {
     // 登录
@@ -182,7 +172,7 @@ async function handleLogin() {
         if (loginRes.status === 0) {
             // 验证码不正确
 
-            getCaptcha();
+            handleGetCaptcha();
         } else if (loginRes.status === 2) {
             // '登录成功
             vueChatAccount.value = password.value = captcha.value = '';
@@ -223,7 +213,7 @@ async function handleRegister() {
         };
         const registerRes = (await vueChatRegister(userInfo)) as IAjaxRes;
         if (registerRes.status === 0) {
-            getCaptcha();
+            handleGetCaptcha();
         } else if (registerRes.status === 2) {
             loginOrRes();
         }
@@ -240,7 +230,7 @@ const handleLoginOrRes = async () => {
 };
 
 onMounted(() => {
-    getCaptcha();
+    handleGetCaptcha();
 });
 </script>
 

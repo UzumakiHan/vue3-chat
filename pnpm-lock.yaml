@@ -10,6 +10,7 @@ specifiers:
   dayjs: ^1.11.7
   eslint: 8.39.0
   eslint-config-hfex: ^1.1.0
+  hfex-ellipsis: ^1.1.0
   hfex-list: ^1.1.0
   hfex-prettier-config: ^1.0.0
   hfex-stylelint-config: ^1.1.0
@@ -58,6 +59,7 @@ devDependencies:
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/4.0.0_vite@4.1.1+vue@3.2.47
   eslint: registry.npmmirror.com/eslint/8.39.0
   eslint-config-hfex: registry.npmmirror.com/eslint-config-hfex/1.1.0_oksht3oxai4m62mncdwy6xjtfu
+  hfex-ellipsis: registry.npmmirror.com/hfex-ellipsis/1.1.0
   hfex-list: registry.npmmirror.com/hfex-list/1.1.0
   hfex-prettier-config: registry.npmmirror.com/hfex-prettier-config/1.0.0
   hfex-stylelint-config: registry.npmmirror.com/hfex-stylelint-config/1.1.0_stylelint@15.8.0
@@ -2729,6 +2731,12 @@ packages:
     name: he
     version: 1.2.0
     hasBin: true
+    dev: true
+
+  registry.npmmirror.com/hfex-ellipsis/1.1.0:
+    resolution: {integrity: sha512-0renArYnQ8R9y5lx4rF6hCqZTvSn58JjOiyv8L78aVFokTKtAuTjHTLRQ9K/M2+QpEk5VGIkrTZ+eXhc8ZOu8g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/hfex-ellipsis/-/hfex-ellipsis-1.1.0.tgz}
+    name: hfex-ellipsis
+    version: 1.1.0
     dev: true
 
   registry.npmmirror.com/hfex-list/1.1.0:

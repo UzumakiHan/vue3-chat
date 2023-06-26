@@ -104,14 +104,13 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
-import {useRoute} from 'vue-router';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
+
 import axios from 'axios';
 import {showToast, showLoadingToast, closeToast} from 'vant';
 import {useUserStore} from '@/store/index';
-import {IAjaxRes} from '@/common/typings';
-import {getUserInfo} from '@/common/api';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+import usePersonal from '@/hooks/use-personal';
+
 import accountIcon from '@/assets/img/account.png';
 import userIcon from '@/assets/img/user.png';
 import sexIcon from '@/assets/img/sex.png';
@@ -119,46 +118,14 @@ import phoneIcon from '@/assets/img/phone.png';
 import brithdayIcon from '@/assets/img/brithday.png';
 import addressIcon from '@/assets/img/address.png';
 import signIcon from '@/assets/img/sign.png';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 
-const route = useRoute();
+const {isMySelf, userInfo, isEdit, iconName, handleOtherUserInfo, handleEdit} = usePersonal();
+
 const userStore = useUserStore();
-const otherUserInfo = ref();
-const {id} = route.params;
-const isMySelf = ref(id === userStore.userId);
-const iconName = ref('edit');
-
-const userInfo = ref({
-    vuechatAccount: '',
-    vuechatAvatar: '',
-    vuechatName: '',
-    sex: '',
-    phone: '',
-    brithday: '',
-    address: '',
-    personalSign: ''
-});
-const isEdit = ref(false);
 
 const base64Avatar = ref('');
-function handleEdit() {
-    isEdit.value = !isEdit.value;
-    iconName.value = isEdit.value ? 'cross' : 'edit';
-    if (isEdit.value) {
-        const {vuechatAccount, vuechatAvatar, vuechatName, sex, phone, brithday, address, personalSign} = isMySelf.value
-            ? userStore.userInfo
-            : otherUserInfo.value;
-        userInfo.value = {
-            vuechatAccount,
-            vuechatAvatar,
-            vuechatName,
-            sex,
-            phone,
-            brithday,
-            address,
-            personalSign
-        };
-    }
-}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleAfterRead(file: any) {
     base64Avatar.value = file.content;
@@ -209,37 +176,7 @@ function handleSave() {
             throw Error(err);
         });
 }
-async function handleOtherUserInfo() {
-    if (!isMySelf.value) {
-        const otherUserInfoRes = (await getUserInfo(id as string)) as IAjaxRes;
-        otherUserInfo.value = otherUserInfoRes.data;
-        const {vuechatAccount, vuechatAvatar, vuechatName, sex, phone, brithday, address, personalSign} =
-            otherUserInfo.value;
-        userInfo.value = {
-            vuechatAccount,
-            vuechatAvatar,
-            vuechatName,
-            sex,
-            phone,
-            brithday,
-            address,
-            personalSign
-        };
-    } else {
-        const {vuechatAccount, vuechatAvatar, vuechatName, sex, phone, brithday, address, personalSign} =
-            userStore.userInfo;
-        userInfo.value = {
-            vuechatAccount,
-            vuechatAvatar,
-            vuechatName,
-            sex,
-            phone,
-            brithday,
-            address,
-            personalSign
-        };
-    }
-}
+
 onMounted(() => {
     handleOtherUserInfo();
 });

@@ -128,7 +128,7 @@ export interface IUserInfo {
     vuechatAccount: string;
     vuechatName: string;
     vuechatAvatar: string;
-    vuechatPassword: string;
+    vuechatPassword?: string;
     wechatMomentBg: string;
     _v: number;
     _id: string;
@@ -208,4 +208,9 @@ export interface IChatRoom {
     chatRoomOwner: string;
     _v: number;
     _id: string;
+}
+
+export interface IVerifyPwd {
+    id: string;
+    pwd: string;
 }

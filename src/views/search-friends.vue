@@ -56,13 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import {searchVueChatAccount, searchMyFriend} from '@/common/api';
 import {showToast} from 'vant';
 import {IUserInfo, IAjaxRes} from '@/common/typings';
 import {useUserStore} from '@/store/index';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+
 const userStore = useUserStore();
 const navType = ref(2);
 const route = useRoute();

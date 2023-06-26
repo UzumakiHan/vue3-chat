@@ -8,13 +8,12 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint-staged": "lint-staged",
-    "check":"npx hfex-check --husky --directory"
+    "check": "npx hfex-check --husky --directory"
   },
   "dependencies": {
     "@vueuse/core": "^10.1.2",
     "axios": "^1.3.3",
     "dayjs": "^1.11.7",
-    "js-md5": "^0.7.3",
     "localforage": "^1.10.0",
     "pinia": "^2.0.30",
     "qs": "^6.11.0",
@@ -28,12 +27,12 @@
     "vue3-baidu-map-gl": "^2.1.3"
   },
   "devDependencies": {
-    "@types/js-md5": "^0.7.0",
     "@types/node": "^18.13.0",
     "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^4.0.0",
     "eslint": "8.39.0",
     "eslint-config-hfex": "^1.1.0",
+    "hfex-ellipsis": "^1.1.0",
     "hfex-list": "^1.1.0",
     "hfex-prettier-config": "^1.0.0",
     "hfex-stylelint-config": "^1.1.0",

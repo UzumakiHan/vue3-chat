@@ -157,9 +157,9 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, nextTick} from 'vue';
+import {onMounted, ref, nextTick, defineAsyncComponent} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
-import {showToast, showImagePreview} from 'vant';
+import {showToast} from 'vant';
 import {onClickOutside} from '@vueuse/core';
 import HfexList from 'hfex-list';
 
@@ -167,9 +167,10 @@ import Recorderx from 'recorderx';
 import {useUserStore} from '@/store/index';
 import {getChatRoomInfo, getGroupChatList} from '@/common/api';
 import socketIo from '@/common/socketio';
+import {handlePreviewImg} from '@/common/util';
 
 import {IAjaxRes, IChatList, IGetGroupChatList} from '@/common/typings';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
 import FaceComp from '@/components/face-comp.vue';
 import ChatContent from '@/components/chat-content.vue';
 
@@ -177,6 +178,7 @@ import voiceIcon from '@/assets/img/voice-circle.png';
 import keyboardIcon from '@/assets/img/keyboard.png';
 import recordvoiceIcon from '@/assets/img/voice.png';
 import sendvoiceIcon from '@/assets/img/send.png';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 
 const rc = new Recorderx();
 const flowLoading = ref(false);
@@ -207,11 +209,7 @@ onClickOutside(faceBoxRef, () => {
 function handleGetCurrentFace(faceContents: string) {
     momentText.value += faceContents;
 }
-function handlePreviewImg(img: string) {
-    const imglist = [];
-    imglist.push(img);
-    showImagePreview(imglist);
-}
+
 // 获取所有表情
 function faceContent() {
     faceShow.value = !faceShow.value;

@@ -25,14 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {ref, defineAsyncComponent} from 'vue';
 import axios from 'axios';
 // import{UploaderFileListItem} from 'vant'
 import {useRouter} from 'vue-router';
 import {showToast, showLoadingToast, closeToast} from 'vant';
 import {useUserStore} from '@/store/index';
 
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 
 const router = useRouter();
 const fileList = ref([]);

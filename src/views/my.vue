@@ -92,12 +92,12 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {ref, defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
 import {useUserStore} from '@/store/index';
 import storage from '@/common/storage';
 import {Row, Image, CellGroup, Cell, ConfigProvider, Icon, Badge, showConfirmDialog} from 'vant';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
 import maleLogo from '@/assets/img/male.png';
 import femaleLogo from '@/assets/img/female.png';
 import defaultAvatar from '@/assets/img/avatar.jpg';
@@ -105,6 +105,8 @@ import chatgroupPng from '@/assets/img/chatgroup.png';
 import applicationPng from '@/assets/img/application.png';
 import changePwdPng from '@/assets/img/change-pwd.png';
 import logoutPng from '@/assets/img/logout.png';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+
 const router = useRouter();
 const sendApplyNum = ref(0);
 const userStore = useUserStore();

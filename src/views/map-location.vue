@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {ref, defineAsyncComponent} from 'vue';
 import {
     BMap,
     BZoom,
@@ -36,7 +36,9 @@ import {
     PointGeocoderResult
 } from 'vue3-baidu-map-gl';
 import {useUserStore} from '@/store/index';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+
 const userStore = useUserStore();
 const center = ref();
 const selectInfo = ref();

@@ -15,7 +15,8 @@ import {
     IDeleteChatOwner,
     IGetAllFriendsWechatMoments,
     ISendWechatComment,
-    IGetGroupChatList
+    IGetGroupChatList,
+    IVerifyPwd
 } from '@/common/typings';
 const BASE_URL = import.meta.env.MODE === 'development' ? '/api' : '';
 
@@ -102,3 +103,6 @@ export const getAllgrounpChatList = (id: string) => post(`${BASE_URL}/chatlist/a
 // 评论朋友圈
 export const sendWechatComment = (commentInfo: ISendWechatComment) =>
     post(`${BASE_URL}/wechatmoment/sendWechatComment`, commentInfo);
+
+// 验证密码
+export const verifyPwd = (info: IVerifyPwd) => post(`${BASE_URL}/user/verifyPwd`, info);

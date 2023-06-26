@@ -25,9 +25,9 @@
                                 {{ moment.userInfo[0].vuechatName }}
                             </div>
                             <div class="wechat-moment-contain-list-ul-li-content-text">
-                                <TextParagraph
+                                <HfexEllipsis
                                     :text="moment.momentText"
-                                    :max-lines="3"
+                                    :max-lines="5"
                                 >
                                     <template v-slot:default="{clickToggle, expanded}">
                                         <span
@@ -35,7 +35,7 @@
                                             @click="clickToggle"
                                         >{{ expanded ? '收起' : '阅读全文' }}</span>
                                     </template>
-                                </TextParagraph>
+                                </HfexEllipsis>
                             </div>
 
                             <div class="wechat-moment-contain-list-ul-li-content-imglist">
@@ -181,8 +181,9 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useRouter, useRoute} from 'vue-router';
-import {showImagePreview, showDialog, showToast} from 'vant';
+import {showDialog, showToast} from 'vant';
 import HfexList from 'hfex-list';
+import HfexEllipsis from 'hfex-ellipsis';
 import dayJs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-cn';
@@ -197,8 +198,7 @@ import {
 } from '@/common/api';
 
 import {useUserStore} from '@/store/index';
-
-import TextParagraph from '@/components/text-paragraph.vue';
+import {handlePreviewImg} from '@/common/util';
 
 dayJs.locale('zh-cn'); // +
 dayJs.extend(relativeTime);
@@ -289,12 +289,7 @@ async function handleGetAllWechatMomentList() {
         flowError.value = true;
     }
 }
-// 预览图片
-function handlePreviewImg(img: string) {
-    const imglist = [];
-    imglist.push(img);
-    showImagePreview(imglist);
-}
+
 async function handleDelete(momentId: string, momentIndex: number) {
     showDialog({
         showCancelButton: true,

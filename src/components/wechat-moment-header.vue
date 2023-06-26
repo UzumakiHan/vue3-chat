@@ -45,16 +45,17 @@
 </template>
 
 <script setup lang="ts">
+import {defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
 
 import {useUserStore} from '@/store/index';
 
 import {IUserInfo} from '@/common/typings';
 
-import ChatNavBar from '@/components/chat-nav-bar.vue';
-
 import defaultMomentBg from '@/assets/img/default-moment.jpg';
 import switchPng from '@/assets/img/switchbg.png';
+
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 const props = defineProps({
     userInfo: {
         type: Object as () => IUserInfo,

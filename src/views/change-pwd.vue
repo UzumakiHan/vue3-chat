@@ -61,18 +61,17 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {ref, defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-import md5 from 'js-md5';
 import {showToast} from 'vant';
 import {useUserStore} from '@/store/index';
-import {changeUserPwd} from '@/common/api';
+import {changeUserPwd, verifyPwd} from '@/common/api';
 import {IAjaxRes} from '@/common/typings';
 import storage from '@/common/storage';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 
 const userStore = useUserStore();
+console.log(userStore.userInfo);
 const router = useRouter();
 const active = ref(0);
 const originPwd = ref('');
@@ -81,9 +80,10 @@ const finalPwd = ref();
 function handlePrevStep() {
     active.value -= 1;
 }
-function handleNextStep() {
+async function handleNextStep() {
     if (active.value === 0) {
-        if (md5(originPwd.value) === userStore.userInfo.vuechatPassword) {
+        const verifyPwdRes = (await verifyPwd({id: userStore.userId, pwd: originPwd.value})) as IAjaxRes;
+        if (verifyPwdRes.status === 2) {
             active.value += 1;
         } else {
             showToast('密码不一致');

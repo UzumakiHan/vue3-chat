@@ -44,7 +44,7 @@
                 <li
                     v-if="userStore.userId === chatRoomInfo.chatRoomOwner && chatRoomMember.length > 3"
                     class="add-account-box"
-                    @click.stop="handleShowCleanIcon"
+                    @click.stop="cleanFlag = true"
                 >
                     <van-icon
                         name="minus"
@@ -57,14 +57,14 @@
                     title="群聊名称"
                     is-link
                     :value="chatRoomInfo.chatRoomName"
-                    @click="openEditNameDialog"
+                    @click="dialogshow = true"
                 />
                 <van-cell
                     title="群公告"
                     :label="chatRoomInfo.chatRoomAd"
                     center
                     is-link
-                    @click="openEditAdDialog"
+                    @click="adDialogshow = true"
                 />
             </van-cell-group>
             <van-cell-group style="margin-top: 10px; margin-bottom: 10px">
@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import {showToast, showDialog} from 'vant';
 import {
@@ -109,7 +109,7 @@ import {
     IUserInfo
 } from '@/common/typings';
 import {useUserStore} from '@/store/index';
-import ChatDialog from '@/components/chat-dialog.vue';
+
 import {
     getChatRoomInfo,
     getChatUserInfo,
@@ -120,9 +120,9 @@ import {
     deleteChatOwner
 } from '@/common/api';
 
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+const ChatDialog = defineAsyncComponent(() => import('@/components/chat-dialog.vue'));
 const userStore = useUserStore();
-
 const route = useRoute();
 const router = useRouter();
 const {chatRoomId} = route.params;
@@ -189,15 +189,7 @@ function handleShowCleanDialog(account: IUserInfo) {
 function handleAddChatMember() {
     router.push(`/selectchatfriends?chatRoomId=${chatRoomId}`);
 }
-function handleShowCleanIcon() {
-    cleanFlag.value = true;
-}
-function openEditNameDialog() {
-    dialogshow.value = true;
-}
-function openEditAdDialog() {
-    adDialogshow.value = true;
-}
+
 async function handleCleanChatList() {
     const sendAccountAndchatRoomId = userStore.userId + chatRoomId;
     showDialog({

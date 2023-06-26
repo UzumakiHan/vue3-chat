@@ -96,15 +96,16 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
 import {List, Image, Empty, showToast} from 'vant';
 import dayjs from 'dayjs';
-import ChatNavBar from '@/components/chat-nav-bar.vue';
+
 import {IChatList, IAjaxRes} from '@/common/typings';
 import storage from '@/common/storage';
 import {alldigtalChatList, getAllgrounpChatList} from '@/common/api';
 import socketIo from '@/common/socketio';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 
 const router = useRouter();
 const allChatList = ref<Array<IChatList>>([]);

@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onActivated} from 'vue';
+import {ref, onMounted, onActivated, defineAsyncComponent} from 'vue';
 import {useRouter} from 'vue-router';
 import {onClickOutside} from '@vueuse/core';
 
@@ -70,8 +70,8 @@ import {showLoadingToast, closeToast, showToast} from 'vant';
 import {useUserStore} from '@/store/index';
 import {IFileObject} from '@/common/typings';
 
-import ChatNavBar from '@/components/chat-nav-bar.vue';
-import FaceComp from '@/components/face-comp.vue';
+const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
+const FaceComp = defineAsyncComponent(() => import('@/components/face-comp.vue'));
 
 const userStore = useUserStore();
 const router = useRouter();
