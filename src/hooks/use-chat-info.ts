@@ -96,6 +96,7 @@ export default function useChatInfo() {
         userInfo,
         judgeKey,
         userId,
+        imgShowList,
         handleGetuserInfo,
         handleCleanMessage,
         handleJudgeMyFriends,
