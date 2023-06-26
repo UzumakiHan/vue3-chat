@@ -6,34 +6,62 @@ https://blog.csdn.net/Hhjian524/article/details/131087359?spm=1001.2014.3001.550
 
 ## 示页面截图
 ### 登录注册
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-login.png?token=GHSAT0AAAAAACDEDGGPB74KWQJ64VWIWTKGZEZMLEA" alt="图片替换文本" width="250" height="444"  />
 
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-register.png?token=GHSAT0AAAAAACDEDGGOSKWY5HTIVI4FAZA2ZEZMMAA" alt="图片替换文本" width="250" height="444"  style="margin-left:20px"/>
+</div>
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-login.png?token=GHSAT0AAAAAACDEDGGPB74KWQJ64VWIWTKGZEZMLEA)
-
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-register.png?token=GHSAT0AAAAAACDEDGGOSKWY5HTIVI4FAZA2ZEZMMAA)
 
 
 ### 四个tab页
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-home.png?token=GHSAT0AAAAAACDEDGGOPIYBS4VNG4J3DNNUZEZMMTQ)
+<div style="display:flex;align-items: center; margin-top:20px">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-home.png?token=GHSAT0AAAAAACDEDGGOPIYBS4VNG4J3DNNUZEZMMTQ" alt="图片替换文本" width="204" height="422"  />
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-maillist.png?token=GHSAT0AAAAAACDEDGGOSUVSAXRGL5W7C6HKZEZMM5Q)
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-maillist.png?token=GHSAT0AAAAAACDEDGGOSUVSAXRGL5W7C6HKZEZMM5Q" alt="图片替换文本" width="204" height="422" style="margin-left:20px"/>
+</div>
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-wechat-moment.png?token=GHSAT0AAAAAACDEDGGO67IZRESF55VSSF7SZEZMNLA)
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-wechat-moment.png?token=GHSAT0AAAAAACDEDGGO67IZRESF55VSSF7SZEZMNLA" alt="图片替换文本" width="204" height="422"  />
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-my.png?token=GHSAT0AAAAAACDEDGGOCDDI3N4SRYVIGBI4ZEZMNSA)
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-my.png?token=GHSAT0AAAAAACDEDGGOCDDI3N4SRYVIGBI4ZEZMNSA" alt="图片替换文本" width="204" height="422" style="margin-left:20px"/>
+</div>
+
 
 
 ### 聊天页面
 
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-chat.png?token=GHSAT0AAAAAACDEDGGPM4NENGFK523BEY4CZEZMOSA" alt="图片替换文本" width="204" height="422"  />
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-chat.png?token=GHSAT0AAAAAACDEDGGPM4NENGFK523BEY4CZEZMOSA)
-
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-g-chat.png?token=GHSAT0AAAAAACDEDGGPF5N3IKOVT4J45ZOSZEZMO3A)
-
-### 用户与群组信息
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-g-chat.png?token=GHSAT0AAAAAACDEDGGPF5N3IKOVT4J45ZOSZEZMO3A" alt="图片替换文本" width="204" height="422" style="margin-left:20px"/>
+</div>
 
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-check-user.png?token=GHSAT0AAAAAACDEDGGPVDSQLAGWICOQDOU2ZEZMQCA)
+### 用户信息与群组信息
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-check-user.png?token=GHSAT0AAAAAACDEDGGPVDSQLAGWICOQDOU2ZEZMQCA" alt="图片替换文本" width="250" height="444"  />
 
-![截图示例](https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-g-info.png?token=GHSAT0AAAAAACDEDGGP6ZZKK5WDBGDQX7SOZEZMPWA)
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-g-info.png?token=GHSAT0AAAAAACDEDGGP6ZZKK5WDBGDQX7SOZEZMPWA" alt="图片替换文本" width="250" height="444"  style="margin-left:20px"/>
+</div>
+
+### 发布朋友圈
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-p-moment.png" alt="图片替换文本" width="250" height="444"  />
+
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-p-location.png" alt="图片替换文本" width="250" height="444"  style="margin-left:20px"/>
+</div>
+
+### 修改信息相关
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-c-b.png" alt="图片替换文本" width="250" height="444"  />
+
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-changepwd.png" alt="图片替换文本" width="250" height="444"  style="margin-left:20px"/>
+</div>
+
+<div style="display:flex;align-items: center;margin-top:20px ">
+<img src="https://raw.githubusercontent.com/UzumakiHan/static-files/master/images/vuechat-edit.png" alt="图片替换文本" width="250" height="444"  />
+
+
+</div>
 

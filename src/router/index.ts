@@ -8,7 +8,7 @@ const routes = [
         component: () => import('@/views/home.vue'),
         meta: {
             showTabBar: true,
-            keepAlive: false
+            keepAlive: true
         }
     },
     {
@@ -26,7 +26,7 @@ const routes = [
         component: () => import('@/views/my.vue'),
         meta: {
             showTabBar: true,
-            keepAlive: false
+            keepAlive: true
         }
     },
     {
@@ -35,7 +35,7 @@ const routes = [
         component: () => import('@/views/wechat-moment.vue'),
         meta: {
             showTabBar: true,
-            keepAlive: false
+            keepAlive: true
         }
     },
     {
@@ -63,7 +63,7 @@ const routes = [
         component: () => import('@/views/chat-grounp-page.vue'),
         meta: {
             showTabBar: false,
-            keepAlive: false
+            keepAlive: true
         }
     },
     {
@@ -100,7 +100,7 @@ const routes = [
 
         meta: {
             showTabBar: false,
-            keepAlive: false
+            keepAlive: true
         }
     },
     {
@@ -177,7 +177,7 @@ const routes = [
         component: () => import('@/views/my-wechat-moment.vue'),
         meta: {
             showTabBar: false,
-            keepAlive: false
+            keepAlive: true
         }
     },
     {

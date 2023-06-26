@@ -179,7 +179,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, onActivated, onDeactivated} from 'vue';
 import {useRouter, useRoute} from 'vue-router';
 import {showDialog, showToast} from 'vant';
 import HfexList from 'hfex-list';
@@ -199,6 +199,7 @@ import {
 
 import {useUserStore} from '@/store/index';
 import {handlePreviewImg} from '@/common/util';
+import storage from '@/common/storage';
 
 dayJs.locale('zh-cn'); // +
 dayJs.extend(relativeTime);
@@ -394,6 +395,19 @@ function handleCheckUser(userInfo: IUserInfo) {
 }
 onMounted(() => {
     handleGetAllWechatMomentList();
+});
+onActivated(async () => {
+    await storage.getItem('hasPublish').then(val => {
+        const hasPublish = val || 0;
+        if (hasPublish === 1) {
+            page.value = 1;
+            wechatMomentLists.value = [];
+            handleGetAllWechatMomentList();
+        }
+    });
+});
+onDeactivated(() => {
+    storage.removeItem('hasPublish');
 });
 </script>
 

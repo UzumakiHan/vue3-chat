@@ -69,6 +69,7 @@ import axios from 'axios';
 import {showLoadingToast, closeToast, showToast} from 'vant';
 import {useUserStore} from '@/store/index';
 import {IFileObject} from '@/common/typings';
+import storage from '@/common/storage';
 
 const ChatNavBar = defineAsyncComponent(() => import('@/components/chat-nav-bar.vue'));
 const FaceComp = defineAsyncComponent(() => import('@/components/face-comp.vue'));
@@ -129,6 +130,7 @@ function handlePlubish() {
             momentText.value = location.value = userStore.adress = '';
             imgList.value = [];
             if (res.data.status === 2) {
+                storage.setItem('hasPublish', 1);
                 router.replace('/wechatmoments');
             } else {
                 showToast(res.data.message);
