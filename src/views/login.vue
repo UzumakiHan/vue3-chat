@@ -124,7 +124,7 @@ import {useRouter} from 'vue-router';
 
 import codeImg from '@/assets/img/code.png';
 import wechatBg from '@/assets/img/wechatbg.png';
-import defaultAvatar from '@/assets/img/avatar.jpg';
+import defaultAvatar from '@/assets/img/avatar.png';
 import storage from '@/common/storage';
 import {useUserStore} from '@/store/index';
 import {IAjaxRes} from '@/common/typings';

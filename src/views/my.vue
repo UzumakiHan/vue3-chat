@@ -100,7 +100,7 @@ import {Row, Image, CellGroup, Cell, ConfigProvider, Icon, Badge, showConfirmDia
 
 import maleLogo from '@/assets/img/male.png';
 import femaleLogo from '@/assets/img/female.png';
-import defaultAvatar from '@/assets/img/avatar.jpg';
+import defaultAvatar from '@/assets/img/avatar.png';
 import chatgroupPng from '@/assets/img/chatgroup.png';
 import applicationPng from '@/assets/img/application.png';
 import changePwdPng from '@/assets/img/change-pwd.png';
