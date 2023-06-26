@@ -51,7 +51,9 @@ function handleAvatarClick() {
 }
 
 onMounted(() => {
-    handlGetUserInfo();
+    if (userId !== userStore.userId) {
+        handlGetUserInfo();
+    }
 });
 </script>
 
