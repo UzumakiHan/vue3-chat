@@ -18,7 +18,7 @@
     "paths": {
       "@/*": ["src/*"],
     },
-    "types": ["vue3-baidu-map-gl/volar","node","vite/client" ]
+    "types": ["vue3-baidu-map-gl/volar","node","vite/client","vite-plugin-sentry/client" ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }],

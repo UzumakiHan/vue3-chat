@@ -116,7 +116,7 @@ const getChatList = async () => {
         const chatUserRes = (await alldigtalChatList(userId.value)) as IAjaxRes;
         const allGrounpRes = (await getAllgrounpChatList(userId.value)) as IAjaxRes;
         const chatDigtalList = chatUserRes.data?.chatDigtalList as Array<IChatList>;
-        const chatDigtalGrounpList = allGrounpRes.data as Array<IChatList>;
+        const chatDigtalGrounpList = allGrounpRes.data?.allGrounpChatList as Array<IChatList>;
 
         if (chatUserRes.status === 2 && chatDigtalList.length > 0) {
             allChatList.value = allChatList.value.concat(chatDigtalList);
